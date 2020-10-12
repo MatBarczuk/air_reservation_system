@@ -1,6 +1,3 @@
-from pprint import pprint
-
-
 class Flight:
     def __init__(self, flight_number, airplane):
         self.airplane = airplane
@@ -82,64 +79,3 @@ class Flight:
                     passengers.append(passenger_data)
 
         return passengers
-
-
-class Airplane:
-    def num_seats(self):
-        rows, seats = self.seating_plan()
-        return len(rows) * len(seats)
-
-
-class Boeing737(Airplane):
-    @staticmethod
-    def get_name():
-        return 'Boeing 737'
-
-    @staticmethod
-    def seating_plan():
-        return range(1, 25), 'ABCDEG'
-
-
-class AirbusA370(Airplane):
-    @staticmethod
-    def get_name():
-        return 'Airbus A370'
-
-    @staticmethod
-    def seating_plan():
-        return range(1, 40), 'ABCDEGHJK'
-
-
-def card_printer(name, seat, plane_model, flight_number):
-    text = f"| Pasażer: {name}, Siedzienie: {seat}, Model: {plane_model}, Numer lotu: {flight_number} |"
-    frame = f"+{'-' * (len(text) - 2)}+"
-    empty_frame = f"|{' ' * (len(text) - 2)}|"
-
-    border = [frame, empty_frame, text, empty_frame, frame]
-    border_text = "\n".join(border)
-    print(border_text)
-
-
-f = Flight('BA123', Boeing737())
-print(f.get_airlines())
-print(f.get_number())
-print(f.get_airplane_model())
-
-b = Boeing737()
-print(b.num_seats())
-
-a = AirbusA370()
-print(a.num_seats())
-
-
-f.allocate_passenger('Lech K', '24A')
-f.allocate_passenger('Jarosław K', '1B')
-f.allocate_passenger('Paweł K', '1C')
-
-f.relocate_passenger('24A', '22G')
-
-pprint(f.num_empty_seats())
-
-f.print_cards(card_printer)
-
-# pprint(f.seating_plan)
