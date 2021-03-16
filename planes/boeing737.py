@@ -1,5 +1,6 @@
 from airplane import Airplane
 
+
 class Boeing737(Airplane):
     @staticmethod
     def get_name():
